@@ -1,0 +1,28 @@
+const config=window.SITE||{};
+const menu=document.querySelector('.menu-toggle');
+const nav=document.querySelector('#navigation');
+function closeMenu(){nav?.classList.remove('open');menu?.setAttribute('aria-expanded','false');menu?.setAttribute('aria-label','Open menu');}
+menu?.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close menu':'Open menu');});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+nav?.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu();});
+matchMedia('(min-width:721px)').addEventListener('change',closeMenu);
+document.querySelectorAll('[data-year]').forEach(el=>el.textContent=new Date().getFullYear());
+function safeURL(value,kind){try{const u=new URL(value);const host=u.hostname.toLowerCase().replace(/^www\./,'');if(u.protocol!=='https:')return '';if(kind==='instagram'&&host!=='instagram.com')return '';if(kind==='youtube'&&!['youtube.com','youtu.be','m.youtube.com'].includes(host))return '';return u.href;}catch{return '';}}
+const instagram=safeURL(config.instagram,'instagram');if(instagram)document.querySelectorAll('[data-instagram]').forEach(el=>{el.href=instagram;el.hidden=false;});
+document.querySelectorAll('[data-youtube]').forEach(el=>{const index=Number(el.dataset.youtube);const url=safeURL(config.youtube?.[index],'youtube');if(url){el.href=url;el.hidden=false;document.querySelector(`[data-video-note="${index}"]`)?.setAttribute('hidden','');}});
+if(config.demo===false)document.querySelectorAll('[data-demo]').forEach(el=>el.hidden=true);
+const shots=[...document.querySelectorAll('.shot')];
+function filterGallery(tag){document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter===tag)));shots.forEach(s=>s.hidden=tag!=='all'&&s.dataset.tag!==tag);document.querySelectorAll('.gallery-section:not(#timelapses)').forEach(s=>s.hidden=![...s.querySelectorAll('.shot')].some(x=>!x.hidden));const count=shots.filter(s=>!s.hidden).length;const status=document.querySelector('.gallery-count');if(status)status.textContent=`${count} photograph${count===1?'':'s'}`;}
+document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>filterGallery(b.dataset.filter)));
+function showHash(){const id=location.hash.slice(1);if(['astrophotography','landscapes-aerial','timelapses'].includes(id)){filterGallery('all');requestAnimationFrame(()=>document.getElementById(id)?.scrollIntoView());}}window.addEventListener('hashchange',showHash);if(shots.length)showHash();
+const box=document.querySelector('.lightbox');let current=0;let trigger;
+function visibleShots(){return shots.filter(s=>!s.hidden);}
+function showPhoto(index){const items=visibleShots();if(!items.length)return;current=(index+items.length)%items.length;const shot=items[current];const source=shot.querySelector('img');box.querySelector('img').src=source.src;box.querySelector('img').alt=source.alt;box.querySelector('figcaption').textContent=`${shot.dataset.caption} · ${current+1} / ${items.length}`;}
+shots.forEach(shot=>shot.addEventListener('click',()=>{trigger=shot;showPhoto(visibleShots().indexOf(shot));box.showModal();document.body.classList.add('modal-open');}));
+box?.querySelector('.lightbox-close').addEventListener('click',()=>box.close());box?.querySelector('.lightbox-next').addEventListener('click',()=>showPhoto(current+1));box?.querySelector('.lightbox-prev').addEventListener('click',()=>showPhoto(current-1));box?.addEventListener('click',e=>{if(e.target===box)box.close();});box?.addEventListener('close',()=>{document.body.classList.remove('modal-open');trigger?.focus();});box?.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();showPhoto(current+1);}if(e.key==='ArrowLeft'){e.preventDefault();showPhoto(current-1);}});
+let touchX=0;box?.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].screenX;},{passive:true});box?.addEventListener('touchend',e=>{const delta=e.changedTouches[0].screenX-touchX;if(Math.abs(delta)>60)showPhoto(current+(delta<0?1:-1));},{passive:true});
+const form=document.querySelector('#contact-form');const email=String(config.email||'').trim();const usableEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);const status=document.querySelector('#form-status');
+function draft(){const d=new FormData(form);return {subject:String(d.get('subject')),body:`Name: ${d.get('name')}\nReply to: ${d.get('email')}\n\n${d.get('message')}`};}
+if(form&&!usableEmail){form.querySelector('[type="submit"]').hidden=true;document.querySelector('#contact-help').textContent='Email contact is being set up. You can prepare and copy your message here.';}
+form?.addEventListener('submit',e=>{e.preventDefault();if(!form.reportValidity())return;const d=draft();if(!usableEmail){status.textContent='Email contact is not yet configured.';return;}location.href=`mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(d.subject)}&body=${encodeURIComponent(d.body)}`;status.textContent='Your email app will open with a draft. Please review and send it there.';});
+document.querySelector('#copy-message')?.addEventListener('click',async()=>{if(!form.reportValidity())return;const d=draft();try{await navigator.clipboard.writeText(`Subject: ${d.subject}\n\n${d.body}`);status.textContent='Message copied. Paste it into your preferred messaging app.';}catch{status.textContent='Copy is unavailable here. Please select and copy your message manually.';form.querySelector('textarea').focus();form.querySelector('textarea').select();}});
