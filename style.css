@@ -1099,36 +1099,15 @@ footer > a:last-child,
   }
 }
 —paste this at the very bottom of style.css, then click Commit changes. It shows four tiles across on desktop, two on tablet and one on mobile.
-/* Homepage gallery: four tiles */
-#collections .collections {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
-}
-
-#collections .collection {
-  min-width: 0;
-}
-
-#collections .collection-photo {
-  width: 100%;
-  height: 280px;
-}
-
-#collections .collection-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-@media (max-width: 800px) {
+/* Three tiles across, with Timelapses centred below */
+@media (min-width: 721px) {
   #collections .collections {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
   }
-}
 
-@media (max-width: 500px) {
-  #collections .collections {
-    grid-template-columns: 1fr;
+  #collections .collection:nth-child(4) {
+    grid-column: 2;
   }
 }
