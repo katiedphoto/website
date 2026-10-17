@@ -1,259 +1,1100 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap');
 
-which html code
-index.html — the homepage file in GitHub.
+:root {
+  color-scheme: dark;
+  --bg: #101113;
+  --surface: #191b1e;
+  --ink: #f0efeb;
+  --muted: #aaaead;
+  --line: #303337;
+  --accent: #bfcdbf;
+  --radius: 16px;
+}
 
-But the HTML you pasted here doesn’t contain those assets/ paths. I found them on the live website, so the live page and the code you’re editing are different versions.
+* {
+  box-sizing: border-box;
+}
 
-You don’t need to search the CSS for them.
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 110px;
+}
 
-with the main page - is it hard to write in another gallery link at the bottom so there are 4 instead of three, one for astro, landscape, arial and timelapse
-Yes—adding a fourth gallery card is a small change. We can have Astrophotography, Landscapes, Aerial and Timelapses, keeping the existing design.
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 15px/1.8 'DM Sans', Arial, sans-serif;
+}
 
-Paste your current index.html here, and I’ll return the whole file with the fourth card added. That ensures I’m editing the version you’re actually using.
+body.modal-open {
+  overflow: hidden;
+}
 
-What’s the filename of the photo you’d like on the Timelapses card? We can reuse astromain.jpg for now if you prefer.
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-<!doctype html><html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark"><meta name="description" content="Katie Dew Photography — landscapes, astrophotography, aerial perspectives and adventures in Queensland, Australia."><title>Home | Katie Dew Photography</title><link rel="stylesheet" href="style.css"><script defer src="settings.js"></script><script defer src="script.js"></script></head><body><a class="skip" href="#main">Skip to content</a><header class="header"><a class="wordmark" href="index.html">KATIE DEW<span>PHOTOGRAPHY</span></a><button class="menu-toggle" type="button" aria-controls="navigation" aria-expanded="false" aria-label="Open menu">Menu <span aria-hidden="true">☰</span></button><nav id="navigation" aria-label="Main navigation"><a href="index.html" aria-current="page">Home</a><a href="about.html">About</a><a href="gallery.html">Gallery</a><a href="blog.html">Blog</a></nav></header><main id="main"><section class="hero"><img src="photos/astromain.jpg" alt="Sample star-filled night sky" fetchpriority="high"><div class="wrap hero-copy"><p class="eyebrow">Katie Dew Photography · Australia</p><h1>Wild places.<br>Endless skies.</h1><p></p><a class="button outline" href="gallery.html">Explore the gallery <span></span></a></div><div class="wrap hero-foot"><span></span><a href="#collections">SCROLL TO EXPLORE ↓</a></div></section><section class="wrap section" id="collections"><div class="section-heading"><div><p class="eyebrow"></p><h2>GALLERY.</h2></div><a class="text-link" href="gallery.html">View all photographs</a></div>
-  <div class="collections"><article class="collection"><a href="gallery.html#astrophotography"><div class="collection-photo">
-    <img src="photos/astro2.jpg" alt="Astrophotography sample" loading="lazy"></div><div class="collection-title"><h3>Astrophotography</h3><span></span></div><p>Nightscapes and skies worth staying up for.</p></a></article><article class="collection"><a href="gallery.html#landscapes-aerial"><div class="collection-photo"><img src="photos/mainland.jpg" alt="Landscape sample" loading="lazy"></div><div class="collection-title"><h3>Landscapes &amp; Aerial</h3><span></span></div><p>Landscapes from the ground to the sky.</p></a></article><article class="collection"><a href="gallery.html#timelapses"><div class="collection-photo"><img src="photos/burleigh.jpg" alt="Timelapse category sample" loading="lazy"></div><div class="collection-title"><h3>Timelapses</h3><span></span></div><p>Watch the stars dance across the sky. Watch on YouTube.</p></a></article></div></div></section></main><footer class="footer"><a class="wordmark" href="index.html">KATIE DEW<span>PHOTOGRAPHY</span></a><p>Queensland, Australia<br>© <span data-year>2026</span> Katie Dew Photography</p><a data-instagram hidden target="_blank" rel="noopener noreferrer">Follow on Instagram ↗</a></footer><dialog class="lightbox" aria-label="Enlarged photograph"><button class="lightbox-close" type="button" aria-label="Close photograph">×</button><button class="lightbox-prev" type="button" aria-label="Previous photograph">‹</button><figure><img alt=""><figcaption></figcaption></figure><button class="lightbox-next" type="button" aria-label="Next photograph">›</button></dialog></body></html>
-…
-Replace your index.html with this complete version. It adds a separate Aerial card, giving you four categories. It reuses your existing photos and keeps your current class names.
+button,
+input,
+textarea {
+  font: inherit;
+}
 
-<!doctype html>
-<html lang="en-AU">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <meta name="description" content="Katie Dew Photography — landscapes, astrophotography, aerial perspectives and adventures in Queensland, Australia.">
+button,
+a,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
 
-  <title>Home | Katie Dew Photography</title>
+button {
+  color: inherit;
+  cursor: pointer;
+}
 
-  <link rel="stylesheet" href="style.css">
-  <script defer src="settings.js"></script>
-  <script defer src="script.js"></script>
-</head>
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+}
 
-<body>
-  <a class="skip" href="#main">Skip to content</a>
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 
-  <header class="header">
-    <a class="wordmark" href="index.html">
-      KATIE DEW
-      <span>PHOTOGRAPHY</span>
-    </a>
+[hidden] {
+  display: none !important;
+}
 
-    <button
-      class="menu-toggle"
-      type="button"
-      aria-controls="navigation"
-      aria-expanded="false"
-      aria-label="Open menu"
-    >
-      Menu <span aria-hidden="true">☰</span>
-    </button>
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
-    <nav id="navigation" aria-label="Main navigation">
-      <a href="index.html" aria-current="page">Home</a>
-      <a href="about.html">About</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="blog.html">Blog</a>
-    </nav>
-  </header>
+.skip {
+  position: absolute;
+  left: 15px;
+  top: -80px;
+  z-index: 20;
+  padding: 10px;
+  background: var(--ink);
+  color: var(--bg);
+}
 
-  <main id="main">
-    <section class="hero">
-      <img
-        src="photos/astromain.jpg"
-        alt="Star-filled night sky"
-        fetchpriority="high"
-      >
+.skip:focus {
+  top: 15px;
+}
 
-      <div class="wrap hero-copy">
-        <p class="eyebrow">Katie Dew Photography · Australia</p>
-        <h1>Wild places.<br>Endless skies.</h1>
-        <p></p>
+/* Header */
 
-        <a class="button outline" href="gallery.html">
-          Explore the gallery <span></span>
-        </a>
-      </div>
+.site-header,
+.header {
+  min-height: 100px;
+  padding: 20px 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  position: relative;
+  z-index: 5;
+  background: var(--bg);
+  border-bottom: 1px solid #ffffff0c;
+}
 
-      <div class="wrap hero-foot">
-        <span></span>
-        <a href="#collections">SCROLL TO EXPLORE ↓</a>
-      </div>
-    </section>
+.wordmark {
+  font: 500 19px/1.4 'Manrope', Arial, sans-serif;
+  letter-spacing: 3px;
+  white-space: nowrap;
+}
 
-    <section class="wrap section" id="collections">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow"></p>
-          <h2>GALLERY.</h2>
-        </div>
+.wordmark strong {
+  font-weight: 500;
+}
 
-        <a class="text-link" href="gallery.html">
-          View all photographs
-        </a>
-      </div>
+.wordmark span {
+  display: block;
+  color: var(--muted);
+  font: 400 9px/2 'DM Sans', Arial, sans-serif;
+  letter-spacing: 4.4px;
+}
 
-      <div class="collections">
-        <article class="collection">
-          <a href="gallery.html#astrophotography">
-            <div class="collection-photo">
-              <img
-                src="photos/astro2.jpg"
-                alt="Astrophotography by Katie Dew"
-                loading="lazy"
-              >
-            </div>
+nav {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
 
-            <div class="collection-title">
-              <h3>Astrophotography</h3>
-              <span></span>
-            </div>
+nav a {
+  padding: 12px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
 
-            <p>Nightscapes and skies worth staying up for.</p>
-          </a>
-        </article>
+nav a:hover,
+nav a[aria-current] {
+  color: var(--ink);
+}
 
-        <article class="collection">
-          <a href="gallery.html#landscapes-aerial">
-            <div class="collection-photo">
-              <img
-                src="photos/mainland.jpg"
-                alt="Landscape photography by Katie Dew"
-                loading="lazy"
-              >
-            </div>
+nav a[aria-current] {
+  border-bottom: 1px solid var(--accent);
+}
 
-            <div class="collection-title">
-              <h3>Landscapes</h3>
-              <span></span>
-            </div>
+.menu-toggle {
+  display: none;
+  padding: 8px 16px;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  font-size: 20px;
+}
 
-            <p>Wild places and views worth wandering for.</p>
-          </a>
-        </article>
+/* Typography and shared layout */
 
-        <article class="collection">
-          <a href="gallery.html#landscapes-aerial">
-            <div class="collection-photo">
-              <img
-                src="photos/burleigh.jpg"
-                alt="Aerial photography by Katie Dew"
-                loading="lazy"
-              >
-            </div>
+.wrap {
+  width: min(1200px, 90%);
+  margin: auto;
+}
 
-            <div class="collection-title">
-              <h3>Aerial</h3>
-              <span></span>
-            </div>
+.eyebrow {
+  margin: 0 0 18px;
+  color: var(--accent);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
 
-            <p>A different perspective from above.</p>
-          </a>
-        </article>
+h1,
+h2,
+h3 {
+  font-family: 'Manrope', Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -1.5px;
+}
 
-        <article class="collection">
-          <a href="gallery.html#timelapses">
-            <div class="collection-photo">
-              <img
-                src="photos/astromain.jpg"
-                alt="Night sky representing Katie Dew's timelapses"
-                loading="lazy"
-              >
-            </div>
+h1 {
+  margin: 0 0 25px;
+  font-size: clamp(38px, 5vw, 72px);
+}
 
-            <div class="collection-title">
-              <h3>Timelapses</h3>
-              <span></span>
-            </div>
+h2 {
+  margin: 0 0 25px;
+  font-size: clamp(29px, 3.5vw, 47px);
+}
 
-            <p>Watch the stars dance across the sky. Watch on YouTube.</p>
-          </a>
-        </article>
-      </div>
-    </section>
-  </main>
+h3 {
+  margin: 12px 0;
+  font-size: 22px;
+  letter-spacing: -0.5px;
+}
 
-  <footer class="footer">
-    <a class="wordmark" href="index.html">
-      KATIE DEW
-      <span>PHOTOGRAPHY</span>
-    </a>
+p {
+  margin: 0 0 22px;
+  color: var(--muted);
+}
 
-    <p>
-      Queensland, Australia<br>
-      © <span data-year>2026</span> Katie Dew Photography
-    </p>
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  padding: 13px 24px;
+  background: var(--ink);
+  color: #141615;
+  border: 0;
+  border-radius: 40px;
+  font-size: 12px;
+}
 
-    <a
-      data-instagram
-      hidden
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Follow on Instagram ↗
-    </a>
-  </footer>
+.button.outline {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid #646a66;
+}
 
-  <dialog class="lightbox" aria-label="Enlarged photograph">
-    <button
-      class="lightbox-close"
-      type="button"
-      aria-label="Close photograph"
-    >×</button>
+.text-link {
+  padding-bottom: 6px;
+  border-bottom: 1px solid #727b73;
+  font-size: 12px;
+}
 
-    <button
-      class="lightbox-prev"
-      type="button"
-      aria-label="Previous photograph"
-    >‹</button>
+.section {
+  padding: 95px 0;
+}
 
-    <figure>
-      <img alt="">
-      <figcaption></figcaption>
-    </figure>
+/* Homepage hero */
 
-    <button
-      class="lightbox-next"
-      type="button"
-      aria-label="Next photograph"
-    >›</button>
-  </dialog>
-</body>
-</html>
+.home-hero,
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  min-height: 660px;
+  height: calc(100svh - 100px);
+  max-height: 1000px;
+  overflow: hidden;
+}
 
-Your existing CSS will display three cards across, with the fourth underneath on desktop. Landscapes and Aerial still link to your existing combined gallery section.
+.home-hero > .hero-image,
+.hero > img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.6);
+}
 
-can you update the CSS to also display the four tiles?
-Yes—paste this at the very bottom of style.css, then click Commit changes. It shows four tiles across on desktop, two on tablet and one on mobile.
+.home-hero::after,
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, #070b12b0, transparent 90%),
+    linear-gradient(0deg, #101113, transparent 30%);
+}
 
-/* Homepage gallery: four tiles */
-#collections .collections {
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  padding: 60px 0;
+}
+
+.home-hero > .hero-copy {
+  width: min(1200px, 90%);
+  margin: auto;
+}
+
+.home-hero h1,
+.hero h1 {
+  max-width: 900px;
+  font-size: clamp(48px, 7vw, 98px);
+  letter-spacing: -3px;
+}
+
+.home-hero p,
+.hero p {
+  max-width: 460px;
+  color: #d3d9d7;
+}
+
+.hero-foot {
+  position: absolute;
+  bottom: 35px;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: #c9cfca;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+/* Homepage selected work */
+
+.featured {
+  padding-top: 80px;
+  padding-bottom: 95px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.section-heading h2,
+.section-heading .eyebrow {
+  margin-bottom: 0;
+}
+
+.category-grid,
+.collections {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
 }
 
-#collections .collection {
+.category-card {
+  display: block;
   min-width: 0;
 }
 
+.category-card > .category-photo {
+  display: block;
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius);
+  transition: filter 0.25s ease;
+}
+
+.category-card:hover > .category-photo {
+  filter: brightness(0.85);
+}
+
+.category-card > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.category-card h3 {
+  margin: 0;
+  font-size: 19px;
+}
+
+.category-card > div > span {
+  flex-shrink: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.category-card > p {
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+/* Collection layouts used on other pages */
+
+.collection-photo {
+  display: block;
+  height: 360px;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.collection-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.collection:hover img {
+  transform: scale(1.04);
+}
+
+.collection-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.collection h3 {
+  font-size: 19px;
+}
+
+.collection p {
+  font-size: 12px;
+}
+
+/* About */
+
+.about-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 8vw;
+  padding: 75px 0 95px;
+}
+
+.portrait {
+  position: relative;
+  height: 600px;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-note {
+  position: absolute;
+  bottom: 15px;
+  left: 18px;
+  padding: 5px 10px;
+  background: #111b;
+  color: white;
+  border-radius: 10px;
+  font-size: 10px;
+}
+
+.about-intro p {
+  max-width: 470px;
+}
+
+.signature {
+  margin-top: 26px;
+  color: var(--ink);
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 30px;
+}
+
+.story-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8vw;
+  padding: 80px 0;
+  border-top: 1px solid var(--line);
+}
+
+.interests {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding-bottom: 90px;
+}
+
+.interests h3 {
+  font-size: 18px;
+}
+
+.interests p {
+  font-size: 13px;
+}
+
+/* Contact */
+
+.contact {
+  padding: 80px 0;
+  background: var(--surface);
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9vw;
+}
+
+.contact p {
+  max-width: 380px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 17px;
+  color: #c9cecb;
+  font-size: 12px;
+}
+
+input,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  background: transparent;
+  color: var(--ink);
+  border: 0;
+  border-bottom: 1px solid #535854;
+  border-radius: 0;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.form-help {
+  margin-top: 18px !important;
+  font-size: 11px;
+}
+
+.notice {
+  margin: 25px 0;
+  padding: 12px 17px;
+  color: #c5c9bd;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 11px;
+}
+
+/* Page introductions */
+
+.page-title,
+.page-intro {
+  padding: 70px 0 35px;
+}
+
+.page-title h1 {
+  margin-bottom: 20px;
+}
+
+.page-title p {
+  max-width: 580px;
+}
+
+/* Gallery */
+
+.filterbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 30px;
+}
+
+.filter {
+  min-height: 44px;
+  padding: 9px 18px;
+  background: none;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  font-size: 12px;
+}
+
+.filter[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.gallery-section {
+  padding: 40px 0 65px;
+  scroll-margin-top: 30px;
+}
+
+.gallery-section h2 {
+  font-size: 31px;
+}
+
+.masonry {
+  columns: 3;
+  column-gap: 18px;
+}
+
+.shot {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin: 0 0 18px;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-align: left;
+  break-inside: avoid;
+}
+
+.shot img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--ratio);
+  object-fit: cover;
+  transition: filter 0.25s;
+}
+
+.shot:hover img {
+  filter: brightness(0.75);
+}
+
+.shot-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px 18px 17px;
+  background: linear-gradient(transparent, #000b);
+  font-size: 12px;
+}
+
+.gallery-count {
+  font-size: 12px;
+}
+
+/* Videos and blog */
+
+.video-grid,
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.video-card .video-thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.video-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  background: #111c;
+  border: 1px solid #fffb;
+  border-radius: 50%;
+}
+
+.video-card p,
+.video-card a {
+  font-size: 12px;
+}
+
+.video-card h3 {
+  font-size: 19px;
+}
+
+.sample-badge {
+  color: var(--accent);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.blog-card {
+  padding-bottom: 35px;
+}
+
+.blog-image {
+  height: 255px;
+  margin-bottom: 23px;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.blog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blog-card:nth-child(3n+2) .blog-image {
+  height: 310px;
+}
+
+.blog-card h2 {
+  margin: 14px 0;
+  font-size: 24px;
+  letter-spacing: -0.7px;
+}
+
+.blog-card p {
+  font-size: 13px;
+}
+
+.blog-card .meta {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Articles */
+
+.article {
+  max-width: 770px;
+  padding: 70px 0 90px;
+}
+
+.article h1 {
+  font-size: clamp(35px, 5vw, 62px);
+}
+
+.article-image {
+  height: 420px;
+  margin: 35px 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.article-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.article h2 {
+  margin-top: 40px;
+  font-size: 29px;
+}
+
+.article p {
+  font-size: 16px;
+}
+
+/* Footer */
+
+footer,
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  width: 90%;
+  margin: auto;
+  padding: 55px 0;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+}
+
+footer p,
+.footer p {
+  margin: 0;
+  font-size: 11px;
+}
+
+footer > a:last-child,
+.footer > a:last-child {
+  font-size: 12px;
+}
+
+/* Lightbox */
+
+.lightbox {
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 65px;
+  background: #090b0df7;
+  color: var(--ink);
+  border: 0;
+  overflow: hidden;
+}
+
+.lightbox::backdrop {
+  background: #000;
+}
+
+.lightbox[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.lightbox figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.lightbox img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 88%;
+  object-fit: contain;
+}
+
+.lightbox figcaption {
+  margin-top: 16px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.lightbox button {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  background: #252a2d;
+  border: 1px solid #636963;
+  border-radius: 50%;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.lightbox-close {
+  position: absolute;
+  right: 20px;
+  top: 18px;
+}
+
+/* Tablet */
+
 @media (max-width: 1000px) {
-  #collections .collections {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .about-intro {
+    gap: 5vw;
+  }
+
+  .portrait {
+    height: 500px;
+  }
+
+  .category-card > .category-photo,
+  .collection-photo {
+    height: 280px;
+  }
+
+  .video-grid,
+  .blog-grid {
+    gap: 20px;
+  }
+
+  .masonry {
+    columns: 2;
+  }
+
+  .interests {
+    gap: 20px;
+  }
+
+  .contact-layout {
+    gap: 5vw;
+  }
+
+  .blog-image {
+    height: 220px;
   }
 }
 
+/* Mobile */
+
 @media (max-width: 720px) {
-  #collections .collections {
+  .site-header,
+  .header {
+    min-height: 85px;
+    padding: 15px 5vw;
+  }
+
+  .wordmark {
+    font-size: 16px;
+  }
+
+  .wordmark span {
+    font-size: 8px;
+  }
+
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  nav {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    padding: 25px 5vw;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+
+  nav.open {
+    display: flex;
+  }
+
+  nav a {
+    padding: 11px 0;
+  }
+
+  .home-hero,
+  .hero {
+    min-height: 590px;
+    height: calc(90svh - 85px);
+  }
+
+  .home-hero h1,
+  .hero h1 {
+    font-size: clamp(40px, 9vw, 64px);
+    letter-spacing: -1.6px;
+  }
+
+  .hero-foot {
+    font-size: 9px;
+  }
+
+  .section,
+  .featured {
+    padding-top: 65px;
+    padding-bottom: 65px;
+  }
+
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .category-grid,
+  .collections {
     grid-template-columns: 1fr;
     gap: 30px;
   }
+
+  .category-card > .category-photo,
+  .collection-photo {
+    height: 330px;
+  }
+
+  .about-intro {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 40px 0 65px;
+  }
+
+  .portrait {
+    height: 430px;
+  }
+
+  .story-section {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 55px 0;
+  }
+
+  .interests {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding-bottom: 50px;
+  }
+
+  .contact {
+    padding: 55px 0;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .video-grid,
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-image,
+  .blog-card:nth-child(3n+2) .blog-image {
+    height: 300px;
+  }
+
+  .page-title,
+  .page-intro {
+    padding-top: 45px;
+  }
+
+  .gallery-section {
+    padding: 25px 0 40px;
+  }
+
+  .masonry {
+    columns: 2;
+    column-gap: 10px;
+  }
+
+  .shot {
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
+
+  .shot-caption {
+    padding: 30px 10px 10px;
+    font-size: 10px;
+  }
+
+  footer,
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .lightbox {
+    padding: 65px 10px;
+  }
+
+  .lightbox[open] {
+    gap: 5px;
+  }
+
+  .lightbox button {
+    width: 36px;
+    height: 44px;
+    border-radius: 10px;
+  }
+
+  .article-image {
+    height: 280px;
+  }
 }
 
+@media (max-width: 380px) {
+  .masonry {
+    columns: 1;
+  }
 
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
 
+  .filter {
+    padding: 9px 12px;
+  }
+}
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+  }
+}
