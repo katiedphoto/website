@@ -1098,7 +1098,6 @@ footer > a:last-child,
     transition: none !important;
   }
 }
-—paste this at the very bottom of style.css, then click Commit changes. It shows four tiles across on desktop, two on tablet and one on mobile.
 /* Three tiles across, with Timelapses centred below */
 @media (min-width: 721px) {
   #collections .collections {
