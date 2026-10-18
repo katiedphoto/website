@@ -52,6 +52,12 @@
           the outdoors and sharing a little of its beauty through my lens.
         </p>
 
+        <p>
+          I’ve been taking photos since 2018, and my favourite captures
+          often come with a story: an early alarm, a questionable
+          forecast or a quick photo stop that lasted longer than expected.
+        </p>
+
         <a class="button outline" href="#contact">
           Get in touch
         </a>
@@ -86,16 +92,11 @@
 
       <div>
         <p>
-          I enjoy creating timelapses, watching the light shift
+          I also enjoy creating timelapses, watching the light shift
           and the night sky come to life. There’s a little patience
           involved, and usually plenty of photos waiting to be
           sorted afterwards.
         </p>
-      <p>
-        I’ve been taking photos since 2018, and my favourite captures
-          often come with a story: an early alarm, a questionable
-          forecast or a quick photo stop that lasted longer than expected.
-      </p>
 
         <p>
           Here, you’ll find some of my favourite captures,
@@ -116,7 +117,7 @@
           style="height:auto; aspect-ratio:1/1;"
         >
           <img
-            src="photos/aboutme2.jpg"
+            src="photos/aboutme1.jpg"
             alt="Explore Katie's astrophotography"
             loading="lazy"
           >
@@ -134,7 +135,7 @@
           style="height:auto; aspect-ratio:1/1;"
         >
           <img
-            src="photos/aboutme1.jpg"
+            src="photos/aboutme2.jpg"
             alt="Explore Katie's landscape and aerial photography"
             loading="lazy"
           >
@@ -152,7 +153,7 @@
           style="height:auto; aspect-ratio:1/1;"
         >
           <img
-            src="photos/astromain.jpg"
+            src="photos/aboutme3.jpg"
             alt="Explore Katie's timelapses"
             loading="lazy"
           >
@@ -173,8 +174,7 @@
 
           <a
             class="text-link"
-            data-instagram
-            hidden
+            href="https://www.instagram.com/katiedew_/"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -182,12 +182,17 @@
           </a>
         </div>
 
-        <form id="contact-form">
+        <form
+          id="formspree-contact"
+          action="https://formspree.io/f/xgavokon"
+          method="POST"
+        >
           <div class="form-row">
             <label>
               Your name
               <input
                 name="name"
+                type="text"
                 autocomplete="name"
                 required
                 maxlength="100"
@@ -208,7 +213,12 @@
 
           <label>
             Subject
-            <input name="subject" required maxlength="150">
+            <input
+              name="subject"
+              type="text"
+              required
+              maxlength="150"
+            >
           </label>
 
           <label>
@@ -223,24 +233,9 @@
 
           <div class="form-actions">
             <button class="button" type="submit">
-              Prepare email ↗
-            </button>
-
-            <button
-              class="button outline"
-              type="button"
-              id="copy-message"
-            >
-              Copy message
+              Send message ↗
             </button>
           </div>
-
-          <p class="form-help" id="contact-help">
-            Preparing your message opens your email app;
-            nothing is sent automatically.
-          </p>
-
-          <p id="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
