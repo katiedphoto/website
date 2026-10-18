@@ -1121,3 +1121,7 @@ img.signature-image {
   margin: 24px 0 0;
   object-fit: contain;
 }
+/* Lighten only the homepage's main image */
+body:has(#collections) .hero > img {
+  filter: brightness(0.85);
+}
