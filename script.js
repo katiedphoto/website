@@ -26,3 +26,50 @@ function draft(){const d=new FormData(form);return {subject:String(d.get('subjec
 if(form&&!usableEmail){form.querySelector('[type="submit"]').hidden=true;document.querySelector('#contact-help').textContent='Email contact is being set up. You can prepare and copy your message here.';}
 form?.addEventListener('submit',e=>{e.preventDefault();if(!form.reportValidity())return;const d=draft();if(!usableEmail){status.textContent='Email contact is not yet configured.';return;}location.href=`mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(d.subject)}&body=${encodeURIComponent(d.body)}`;status.textContent='Your email app will open with a draft. Please review and send it there.';});
 document.querySelector('#copy-message')?.addEventListener('click',async()=>{if(!form.reportValidity())return;const d=draft();try{await navigator.clipboard.writeText(`Subject: ${d.subject}\n\n${d.body}`);status.textContent='Message copied. Paste it into your preferred messaging app.';}catch{status.textContent='Copy is unavailable here. Please select and copy your message manually.';form.querySelector('textarea').focus();form.querySelector('textarea').select();}});
+/* Give enlarged gallery photos more room on mobile */
+@media (max-width: 720px) {
+  .lightbox {
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    padding: 64px 12px 80px;
+  }
+
+  .lightbox[open] {
+    display: flex;
+    gap: 0;
+  }
+
+  .lightbox figure {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    margin: 0;
+  }
+
+  .lightbox figure img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: calc(100% - 60px);
+    object-fit: contain;
+  }
+
+  .lightbox .lightbox-prev,
+  .lightbox .lightbox-next {
+    position: absolute;
+    bottom: 18px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .lightbox .lightbox-prev {
+    left: calc(50% - 54px);
+  }
+
+  .lightbox .lightbox-next {
+    right: calc(50% - 54px);
+  }
+}
