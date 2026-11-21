@@ -135,10 +135,11 @@ html:has(#kosciuszko-lightbox[open]) {
   </div>
 </figure>
     <figure class="kosciuszko-photo">
-  <div class="kosciuszko-photo-box">
-    <span class="kosciuszko-placeholder">map of Kosciuszko</span>
-    <img src="photos/map.jpg" alt="map of kosciuszko" loading="lazy"
-         onerror="this.hidden=true" onload="this.previousElementSibling.hidden=true">
+     <div class="kosciuszko-photo-box" style="height: clamp(180px, 45vw, 320px); aspect-ratio: auto;">
+  <span class="kosciuszko-placeholder">map of Kosciuszko</span>
+  <img src="photos/map.jpg" alt="map of kosciuszko" loading="lazy"
+       style="object-fit: contain;"
+       onerror="this.hidden=true" onload="this.previousElementSibling.hidden=true">
   </div>
 </figure>
   </div>
